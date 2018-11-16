@@ -8,5 +8,5 @@ public abstract class Stage {
         return estimated_time;
     }
 
-    abstract void update();
+    abstract public void update();
 }

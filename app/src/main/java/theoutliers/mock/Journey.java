@@ -1,6 +1,8 @@
 package theoutliers.mock;
 
 import java.util.LinkedList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import theoutliers.mock.stages.AirportToCheckinStage;
 import theoutliers.mock.stages.CheckinLineStage;
@@ -16,37 +18,47 @@ public class Journey {
 
     LinkedList<Stage> stages = new LinkedList<Stage>();
 
-    // Singleton
+    Timer updateTimer = new Timer();
+
+    // Singleton thread safe
     private static final Journey SINGLE_INSTANCE = new Journey();
     private Journey() {}
-    public static Journey getInstance() {
+    public synchronized static Journey getInstance() {
         return SINGLE_INSTANCE;
     }
 
     public void constructJourney(){
-    // TODO: I do not think we need any parameters here
+        // Stop update timer
+        updateTimer.cancel();
 
-    // Build the Journey stages
-    stages.add(new HomeToAirportStage());
-    stages.add(new AirportToCheckinStage());
-    stages.add(new CheckinLineStage());
-    stages.add(new CheckinToSecurityStage());
-    stages.add(new SecurityLineStage());
-    stages.add(new SecurityToImmigration());
-    stages.add(new ImmigrationLineStage());
-    stages.add(new ImmigrationToGateStage());
+        // Build the Journey stages
+        stages.add(new HomeToAirportStage());
+        stages.add(new AirportToCheckinStage());
+        stages.add(new CheckinLineStage());
+        stages.add(new CheckinToSecurityStage());
+        stages.add(new SecurityLineStage());
+        stages.add(new SecurityToImmigration());
+        stages.add(new ImmigrationLineStage());
+        stages.add(new ImmigrationToGateStage());
 
-    // TODO: Start update timer
-
+        // Start update timer
+        updateTimer.scheduleAtFixedRate(new StageUpdateTask(), 0, 2000);
     }
 
     public void clearJourney(){
-    // TODO: Stop update timer
+        // Stop update timer
+        updateTimer.cancel();
 
+        // Clear journey
         stages.clear();
     }
 
-
+    // Update Journey stages called by Update Timer
+    public synchronized void updateStages(){
+        for(Stage stage : stages) {
+            stage.update();
+        }
+    }
 
     public int totalTime(){
         int totalTime = 0;
