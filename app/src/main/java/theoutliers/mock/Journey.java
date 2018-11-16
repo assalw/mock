@@ -16,6 +16,13 @@ public class Journey {
 
     LinkedList<Stage> stages = new LinkedList<Stage>();
 
+    // Singleton
+    private static final Journey SINGLE_INSTANCE = new Journey();
+    private Journey() {}
+    public static Journey getInstance() {
+        return SINGLE_INSTANCE;
+    }
+
     public void constructJourney(){
     // TODO: I do not think we need any parameters here
 
