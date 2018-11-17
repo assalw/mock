@@ -6,23 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
-        android:id="@+id/time"
+        android:id="@+id/flightnumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="119dp" />
+        android:inputType="textPersonName"
+        android:text="Flightnumber"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="64dp" />
 
+    <Switch
+        android:id="@+id/eu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EU / non-EU"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="121dp" />
+
+    <Switch
+        android:id="@+id/car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Car / Train"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="167dp" />
+
+    <CheckBox
+        android:id="@+id/luggage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Luggage"
+        tools:layout_editor_absoluteX="201dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <CheckBox
+        android:id="@+id/checkin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check-in"
+        tools:layout_editor_absoluteX="201dp"
+        tools:layout_editor_absoluteY="161dp" />
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="213dp" />
 </android.support.constraint.ConstraintLayout>

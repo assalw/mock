@@ -28,7 +28,6 @@ public class Journey {
     PhoneLocation phoneLocation = null;
 
     int totalTime = 0;
-    Hashtable<String, Integer> stageTimes = new Hashtable<String, Integer>();
 
     Timer updateTimer = null;
 
@@ -79,7 +78,6 @@ public class Journey {
         // update total time as well
         int totalTimeTemp = 0;
         for(Stage stage : stages) {
-            stageTimes.put(stage.getClass().getSimpleName(), stage.getEstimatedTime());
             totalTimeTemp += stage.getEstimatedTime();
         }
         this.totalTime = totalTimeTemp;
@@ -98,11 +96,12 @@ public class Journey {
     public String stageTimes(){
         String subTimes = "";
 
-        for (int value : stageTimes.values() ) {
-            subTimes +=  Integer.toString(value) + " : ";
+        for (Stage stage : stages) {
+            subTimes += stage.getClass().getSimpleName() + " ";
+            subTimes += stage.getEstimatedTime() + " : ";
         }
 
         Log.e("TRAVEL_TIMES", "stage_travel_time: " + subTimes);
-        return "Test";
+        return subTimes;
     }
 }
