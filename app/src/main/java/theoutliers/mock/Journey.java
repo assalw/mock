@@ -5,6 +5,8 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -25,7 +27,8 @@ public class Journey {
 
     PhoneLocation phoneLocation = null; //new PhoneLocation();
 
-    String travelTime = "";
+    int totalTime = 0;
+    Hashtable<String, Integer> stageTimes = new Hashtable<String, Integer>();
 
     Timer updateTimer = null;
 
@@ -70,17 +73,32 @@ public class Journey {
         }
 
         // update total time as well
+        int totalTimeTemp = 0;
+        for(Stage stage : stages) {
+            stageTimes.put(stage.getClass().getSimpleName(), stage.getEstimatedTime());
+            totalTimeTemp += stage.getEstimatedTime();
+        }
+        this.totalTime = totalTimeTemp;
+
+        // Print times for testing
         this.totalTime();
+        this.stageTimes();
     }
 
     public int totalTime(){
-        int totalTime = 0;
-        for(Stage stage : stages) {
-            totalTime += stage.getEstimatedTime();
+        Log.e("TRAVEL_TIMES", "total_travel_time: " + this.totalTime);
+        return this.totalTime;
+    }
+
+    // TODO: We should fix this
+    public String stageTimes(){
+        String subTimes = "";
+
+        for (int value : stageTimes.values() ) {
+            subTimes +=  Integer.toString(value) + " : ";
         }
 
-        Log.e("TRAVEL_TIMES", "total_travel_time: " + totalTime);
-
-        return totalTime;
+        Log.e("TRAVEL_TIMES", "stage_travel_time: " + subTimes);
+        return "Test";
     }
 }
