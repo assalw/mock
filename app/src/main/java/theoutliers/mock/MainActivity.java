@@ -10,9 +10,12 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import theoutliers.mock.stages.JourneyActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,5 +66,11 @@ public class MainActivity extends AppCompatActivity {
         journey.constructJourney();
 
         // TODO: Test travel subtimes
+    }
+
+    public void sendMessage(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, JourneyActivity.class);
+        startActivity(intent);
     }
 }
