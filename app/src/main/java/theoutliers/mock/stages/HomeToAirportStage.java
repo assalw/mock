@@ -17,7 +17,7 @@ public class HomeToAirportStage extends Stage {
     PhoneLocation phoneLocation = null;
 
     public HomeToAirportStage(PhoneLocation phoneLocation) {
-        //this.phoneLocation = phoneLocation;
+        this.phoneLocation = phoneLocation;
 
         // TODO: Setup travel API
     }

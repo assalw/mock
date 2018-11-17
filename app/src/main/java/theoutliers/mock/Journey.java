@@ -1,6 +1,9 @@
 package theoutliers.mock;
 
+import android.app.Activity;
 import android.provider.ContactsContract;
+import android.util.Log;
+import android.widget.TextView;
 
 import java.util.LinkedList;
 import java.util.Timer;
@@ -22,7 +25,9 @@ public class Journey {
 
     PhoneLocation phoneLocation = null; //new PhoneLocation();
 
-    Timer updateTimer = new Timer();
+    String travelTime = "";
+
+    Timer updateTimer = null;
 
     // Singleton thread safe
     private static final Journey SINGLE_INSTANCE = new Journey();
@@ -32,8 +37,8 @@ public class Journey {
     }
 
     public void constructJourney(){
-        // Stop update timer
-        // updateTimer.cancel();
+        // New update timer
+        updateTimer = new Timer();
 
         // Build the Journey stages
         stages.add(new HomeToAirportStage(phoneLocation));
@@ -46,12 +51,13 @@ public class Journey {
         stages.add(new ImmigrationToGateStage());
 
         // Start update timer
-        // updateTimer.scheduleAtFixedRate(new StageUpdateTask(), 0, 2000);
+        updateTimer.scheduleAtFixedRate(new StageUpdateTask(), 0, 2000);
     }
 
     public void clearJourney(){
         // Stop update timer
-        // updateTimer.cancel();
+        updateTimer.cancel();
+        updateTimer = null;
 
         // Clear journey
         stages.clear();
@@ -62,6 +68,9 @@ public class Journey {
         for(Stage stage : stages) {
             stage.update();
         }
+
+        // update total time as well
+        this.totalTime();
     }
 
     public int totalTime(){
@@ -69,6 +78,9 @@ public class Journey {
         for(Stage stage : stages) {
             totalTime += stage.getEstimatedTime();
         }
+
+        Log.e("TRAVEL_TIMES", "total_travel_time: " + totalTime);
+
         return totalTime;
     }
 }

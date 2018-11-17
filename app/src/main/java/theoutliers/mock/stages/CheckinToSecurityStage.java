@@ -9,5 +9,8 @@ public class CheckinToSecurityStage extends Stage {
     @Override
     public void update() {
         // Fixed time, no need too update
+
+        // Test
+        this.estimated_time -= 1;
     }
 }
