@@ -11,6 +11,6 @@ public class CheckinToSecurityStage extends Stage {
         // Fixed time, no need too update
 
         // Test
-        this.estimated_time -= 1;
+        //this.estimated_time -= 1;
     }
 }
