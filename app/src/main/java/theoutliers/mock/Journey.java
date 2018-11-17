@@ -25,7 +25,7 @@ public class Journey {
 
     LinkedList<Stage> stages = new LinkedList<Stage>();
 
-    PhoneLocation phoneLocation = null; //new PhoneLocation();
+    PhoneLocation phoneLocation = null;
 
     int totalTime = 0;
     Hashtable<String, Integer> stageTimes = new Hashtable<String, Integer>();
@@ -37,6 +37,10 @@ public class Journey {
     private Journey() {}
     public synchronized static Journey getInstance() {
         return SINGLE_INSTANCE;
+    }
+
+    public void setPhoneLocation(PhoneLocation phoneLocation) {
+        this.phoneLocation = phoneLocation;
     }
 
     public void constructJourney(){

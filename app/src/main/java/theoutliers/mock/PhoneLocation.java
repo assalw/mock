@@ -7,11 +7,18 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 public class PhoneLocation {
 
-    LocationManager locationManager = (LocationManager) Config.context.getSystemService(Context.LOCATION_SERVICE);
+    LocationManager locationManager = null;
+
+
+    public PhoneLocation(LocationManager locationManager) {
+        this.locationManager = locationManager;
+    }
 
     Location location = null;
 
@@ -49,6 +56,8 @@ public class PhoneLocation {
 
     private void updateLocation(Location location) {
         this.location = location;
+
+        Log.e("TRAVEL_TIMES", "location: " + Double.toString(location.getLatitude()));
     }
 
 }
