@@ -1,6 +1,10 @@
 package theoutliers.mock;
 
+import android.content.Context;
+
 public class Config {
+
+    public static Context context = null;
 
     public static String TOMTOM_API_KEY = "skjfhjhds";
 

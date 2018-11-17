@@ -1,5 +1,7 @@
 package theoutliers.mock;
 
+import android.provider.ContactsContract;
+
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,6 +20,8 @@ public class Journey {
 
     LinkedList<Stage> stages = new LinkedList<Stage>();
 
+    PhoneLocation phoneLocation = new PhoneLocation();
+
     Timer updateTimer = new Timer();
 
     // Singleton thread safe
@@ -32,7 +36,7 @@ public class Journey {
         updateTimer.cancel();
 
         // Build the Journey stages
-        stages.add(new HomeToAirportStage());
+        stages.add(new HomeToAirportStage(phoneLocation));
         stages.add(new AirportToCheckinStage());
         stages.add(new CheckinLineStage());
         stages.add(new CheckinToSecurityStage());
