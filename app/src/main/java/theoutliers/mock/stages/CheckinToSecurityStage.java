@@ -1,8 +1,13 @@
 package theoutliers.mock.stages;
 
 public class CheckinToSecurityStage extends Stage {
-    @Override
-    void update() {
 
+    public CheckinToSecurityStage() {
+        this.setEstimatedTime(20);
+    }
+
+    @Override
+    public void update() {
+        // Fixed time, no need too update
     }
 }
