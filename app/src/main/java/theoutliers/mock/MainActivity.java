@@ -9,6 +9,8 @@ public class MainActivity extends AppCompatActivity {
     // Create Journey
     Journey journey = Journey.getInstance();
 
+    String test = "fskjdhf";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: Test travel time
         journey.constructJourney();
+
+        int test = journey.totalTime();
+
         TextView textView = findViewById(R.id.hello_world);
-        textView.setText(journey.totalTime());
+        textView.setText(Integer.toString(test));
 
         // TODO: Test travel subtimes
 

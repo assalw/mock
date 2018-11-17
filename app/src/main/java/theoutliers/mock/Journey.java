@@ -20,7 +20,7 @@ public class Journey {
 
     LinkedList<Stage> stages = new LinkedList<Stage>();
 
-    PhoneLocation phoneLocation = new PhoneLocation();
+    PhoneLocation phoneLocation = null; //new PhoneLocation();
 
     Timer updateTimer = new Timer();
 
@@ -33,7 +33,7 @@ public class Journey {
 
     public void constructJourney(){
         // Stop update timer
-        updateTimer.cancel();
+        // updateTimer.cancel();
 
         // Build the Journey stages
         stages.add(new HomeToAirportStage(phoneLocation));
@@ -46,12 +46,12 @@ public class Journey {
         stages.add(new ImmigrationToGateStage());
 
         // Start update timer
-        updateTimer.scheduleAtFixedRate(new StageUpdateTask(), 0, 2000);
+        // updateTimer.scheduleAtFixedRate(new StageUpdateTask(), 0, 2000);
     }
 
     public void clearJourney(){
         // Stop update timer
-        updateTimer.cancel();
+        // updateTimer.cancel();
 
         // Clear journey
         stages.clear();
@@ -69,6 +69,6 @@ public class Journey {
         for(Stage stage : stages) {
             totalTime += stage.getEstimatedTime();
         }
-        return totalTime();
+        return totalTime;
     }
 }
