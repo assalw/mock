@@ -37,10 +37,10 @@ public class HomeToAirportStage extends Stage {
     @Override
     public void update(){
         try {
-            Log.e("TravelTime", getDurationForRoute("",""));
+            this.setEstimatedTime(getDurationForRoute("Amsterdam","Duivendrecht"));
         }
         catch (Exception e) {
-
+            Log.e("Exception", e.getMessage());
         }
 
     }
@@ -54,7 +54,7 @@ public class HomeToAirportStage extends Stage {
 
      @return The estimated time needed to travel human-friendly formatted
      */
-    public String getDurationForRoute(String origin, String destination) throws InterruptedException, ApiException, IOException {
+    public int getDurationForRoute(String origin, String destination) throws InterruptedException, ApiException, IOException {
 
         // - We need a context to access the API
         GeoApiContext geoApiContext = new GeoApiContext.Builder()
@@ -73,6 +73,6 @@ public class HomeToAirportStage extends Stage {
         DirectionsRoute route = directionsResult.routes[0];
         DirectionsLeg leg = route.legs[0];
         Duration duration = leg.duration;
-        return duration.humanReadable;
+        return (int) duration.inSeconds / 60;
     }
 }
